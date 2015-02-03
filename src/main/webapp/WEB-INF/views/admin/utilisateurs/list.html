@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title th:text="#{title.application}">Home</title>
+
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}"/>
+<link rel="stylesheet" href="../../../assets/css/bootstrap-theme.min.css"  th:href="@{/assets/css/bootstrap-theme.min.css}"/>
+<link rel="stylesheet" href="../../../assets/css/sticky-footer-navbar.css" th:href="@{/assets/css/sticky-footer-navbar.css}"/>
+</head>
+<body>
+	<div class="container">
+		<div tiles:fragment="content" th:object="${T(com.arkeos.recouvrement.web.utils.ApplicationURIs)}">
+			<div class="page-header">
+				<div class="row">
+					<div class="col-md-8">
+						<h1><span th:text="#{users.list.page.title}">Users liste</span></h1>
+					</div>
+					<div class="col-md-4">
+						<a type="button" class="btn btn-success btn-lg" href="#" th:href="@{*{USERS_ADMIN_NEW}}">
+						  <span class="glyphicon glyphicon-user"></span> Nouveau utilsateur
+						</a>
+					</div>
+				</div>
+			</div>
+			<table class="table">
+			    <thead>
+			        <tr>
+			            <th th:text="#{user.attribute.login}">login</th>
+			            <th th:text="#{user.attribute.firstName}">First Name</th>
+			            <th th:text="#{user.attribute.lastName}">Last Name</th>
+			            <th th:text="#{user.attribute.email}">Email</th>
+			            <th th:text="#{user.attribute.roles}">Roles</th>
+			            <th th:text="#{user.attribute.actif}">Actif</th>
+			            <th th:text="#{table.header.actions}">Actions</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <tr th:each="user : ${pageUsers.content}">
+			            <td th:text="${user.login}">login</td>
+			            <td th:text="${user.prenom}">prénom</td>
+			            <td th:text="${user.nom}">nom</td>
+			            <td th:text="${user.email}">mail@test.com</td>
+			            <td>ADMIN, USER</td>
+			            <td th:text="${user.actif}">true</td>
+			            <td>
+			            	<a href="#" th:href="@{*{USERS_ADMIN_VIEW}(id=${user.id})}" class="btn btn-info" role="button">View</a>
+			            	<a href="#" th:href="@{*{USERS_ADMIN_EDIT}(id=${user.id})}" class="btn btn-primary" role="button">Edit</a>
+			            </td>
+			        </tr>
+			    </tbody>
+			</table>
+			<!-- Gestion de la pagination -->
+			<ul class="pagination" th:if="${pageUsers.totalPages > 1}">
+				<li th:if="!${pageUsers.isFirst()}">
+					<a href="#" th:href="@{${currentUrl}(page=1, pageSize=${pageSize})}">First</a>
+				</li>
+				<li class="disabled" th:class="${pageUsers.hasPrevious()} ? '' : 'disabled'">
+					<a href="#" th:if="${pageUsers.hasPrevious()}" th:href="@{${currentUrl}(page=${pageUsers.number}, pageSize=${pageSize})}">&laquo;</a>
+					<span th:if="${pageUsers.isFirst()}">&laquo;</span>
+				</li>
+				<li th:each="i : ${#numbers.sequence( 1, pageUsers.totalPages)}" th:class="(${i - 1} == ${pageUsers.number}) ? 'active' : ''">
+					<a href="#" th:href="@{${currentUrl}(page=${i}, pageSize=${pageSize})}" th:text="${i}">1</a>
+				</li>
+				<li th:class="${pageUsers.hasNext()} ? '' : 'disabled'">
+					<a href="#" th:if="${pageUsers.hasNext()}" th:href="@{${currentUrl}(page=${pageUsers.number + 2}, pageSize=${pageSize})}">&raquo;</a>
+					<span th:if="${pageUsers.isLast()}">&raquo;</span>
+				</li>
+				<li th:if="!${pageUsers.isLast()}">
+					<a href="#" th:href="@{${currentUrl}(page=${pageUsers.totalPages}, pageSize=${pageSize})}">Last</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
+	<script type="text/javascript" src="../../../assets/js/bootstrap.min.js" th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>

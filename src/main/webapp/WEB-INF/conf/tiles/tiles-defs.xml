@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	<definition name="fragments/*" template="main">
+		<put-attribute name="content" value="fragments/{1} :: content" type="thymeleaf"/>
+	</definition>
+	
+	<definition name="admin/*/*" template="main">
+		<put-attribute name="content" value="admin/{1}/{2} :: content" type="thymeleaf"/>
+	</definition>
+	
+	<definition name="login" template="login"/>
+	<definition name="404" template="errors/404"/>
+</tiles-definitions>

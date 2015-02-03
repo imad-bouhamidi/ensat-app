@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title th:text="#{title.application}">Home</title>
+
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}"/>
+<link rel="stylesheet" href="../../../assets/css/bootstrap-theme.min.css"  th:href="@{/assets/css/bootstrap-theme.min.css}"/>
+<link rel="stylesheet" href="../../../assets/css/sticky-footer-navbar.css" th:href="@{/assets/css/sticky-footer-navbar.css}"/>
+</head>
+<body>
+	<div class="container">
+		<div tiles:fragment="content">
+			<div class="page-header">
+				<h1>Hello <span th:text="${user.nom}">Nom</span>, <span th:text="${user.prenom}">Prénom</span></h1>
+			</div>
+			<p>
+				The time on the server is <span th:text="${serverTime}">13 february 2011</span>
+			</p>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
+	<script type="text/javascript" src="../../../assets/js/bootstrap.min.js" th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>

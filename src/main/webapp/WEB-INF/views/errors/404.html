@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<!-- Tiles attribute will be put here at runtime -->
+<title>ENSAT - Application de gestion</title>
+<link rel="stylesheet" href="../assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}"/>
+<link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css"  th:href="@{/assets/css/bootstrap-theme.min.css}"/>
+<link rel="stylesheet" href="../assets/css/sticky-footer-navbar.css" th:href="@{/assets/css/sticky-footer-navbar.css}"/>
+<link rel="stylesheet" href="../assets/css/login.css" th:href="@{/assets/css/login.css}"/>
+</head>
+<body>
+	<div class="container">
+
+		<div class="jumbotron text-center">
+		  <h1>Page not found</h1>
+		  <p class="lead">Cette page n'existe pas</p>
+		  <p><a class="btn btn-lg btn-success" href="#" th:href="@{/}" role="button">Retour accueil</a></p>
+		</div>
+
+    </div>
+	<div th:replace="fragments/footer :: footer">
+		<div id="footer">
+			<div class="container text-center">
+				<p class="text-muted">Footer</p>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
+	<script type="text/javascript" src="../assets/js/bootstrap.min.js" th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>
